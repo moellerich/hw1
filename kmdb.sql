@@ -5,7 +5,7 @@
 
 -- Requirements/assumptions
 --
--- - There will only be three movies in the database – the three films
+-- - There will only be three movies in the database – the three films
 --   that make up Christopher Nolan's Batman trilogy.
 -- - Movie data includes the movie title, year released, MPAA rating,
 --   and studio.
@@ -24,7 +24,6 @@
 -- - As a guest, I want to see the movies which a single actor has acted in.
 -- * Note: The "guest" user role represents the experience prior to logging-in
 --   to an app and typically does not have a corresponding database table.
-
 
 -- Deliverables
 -- 
@@ -116,7 +115,7 @@ DROP TABLE IF EXISTS performances;
 -- TODO!
 
 CREATE TABLE movies (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_title TEXT,
     year_released TEXT,
     mpaa_rating TEXT,
@@ -124,23 +123,23 @@ CREATE TABLE movies (
 );
 
 CREATE TABLE studios (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     studio_name TEXT
 );
 
 CREATE TABLE actors (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     actor_name TEXT
 );
 
 CREATE TABLE characters (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     character_name TEXT,
     actor_id TEXT
 );
 
 CREATE TABLE performances (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id TEXT,
     actor_id TEXT
 );
@@ -149,13 +148,70 @@ CREATE TABLE performances (
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
-INSERT INTO movies ("Batman Begins", "2005", "PG-13", "Warner Bros.")
-INSERT INTO movies ("The Dark Knight", "2008", "PG-13", "Warner Bros.")
-INSERT INTO movies ("The Dark Knight Rises", "2012", "PG-13", "Warner Bros.")
+INSERT INTO movies (
+    movie_title,
+    year_released,
+    mpaa_rating,
+    studio_id
+)
+VALUES ("Batman Begins", "2005", "PG-13", "Warner Bros."),
+("The Dark Knight", "2008", "PG-13", "Warner Bros."),
+("The Dark Knight Rises", "2012", "PG-13", "Warner Bros.");
 
-INSERT INTO studios ("Warner Bros.")
+INSERT INTO studios (
+    studio_name
+)
+VALUES ("Warner Bros.");
 
+INSERT INTO actors (
+    actor_name
+)
+VALUES ("Christian Bale"),
+("Michael Caine"),
+("Liam Neeson"),
+("Katie Holmes"),
+("Gary Oldman"),
+("Heath Ledger"),
+("Aaron Eckhart"),
+("Maggie Gyllenhaal"),
+("Tom Hardy"),
+("Joseph Gordon-Levitt"),
+("Anne Hathaway");
 
+INSERT INTO characters (
+    character_name,
+    actor_id
+)
+VALUES ("Bruce Wayne", "1"),
+("Alfred", "2"),
+("Ra's Al Ghul", "3"),
+("Rachel Dawes", "4"),
+("Commissioner Gordon", "5"),
+("Joker", "6"),
+("Harvey Dent", "7"),
+("Bane", "9"),
+("John Blake", "10"),
+("Selina Kyle", "11");
+
+INSERT INTO performances (
+    movie_id,
+    actor_id
+)
+VALUES ("1", "1"),
+("1", "2"),
+("1", "3"),
+("1", "4"),
+("1", "5"),
+("2", "1"),
+("2", "6"),
+("2", "7"),
+("2", "2"),
+("2", "8"),
+("3", "1"),
+("3", "5"),
+("3", "9"),
+("3", "10"),
+("3", "11");
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -165,7 +221,11 @@ INSERT INTO studios ("Warner Bros.")
 -- The SQL statement for the movies output
 -- TODO!
 
-SELECT movie_title, year_released, mpaa_rating, studio_id FROM movies
+SELECT movie_title,
+    year_released,
+    mpaa_rating, 
+    studio_id
+FROM movies;
 
 -- Prints a header for the cast output
 .print ""
@@ -173,7 +233,7 @@ SELECT movie_title, year_released, mpaa_rating, studio_id FROM movies
 .print "========"
 .print ""
 
-
 -- The SQL statement for the cast output
 -- TODO!
+
 
